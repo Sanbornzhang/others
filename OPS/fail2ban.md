@@ -3,7 +3,7 @@
 具体配置可以 google 或者百度 
 ## fail2ban configure
 ```
-[login-limit]                      -> name of jail
+[aaa-limit]                        -> name of jail
 enabled   = true                   -> enable
 port      = http,https             -> prot most of port shuld http or https
 maxretry  = 3                      | 
@@ -27,7 +27,7 @@ actionunban = ufw delete deny to any port 8001 from <ip>   -> ufw common
 ## filter configure
 ```
 [Definition]
-failregex   = <HOST>.*login.* -> regex
+failregex   = <HOST>.*aaa.* -> regex
 ignoreregex =
 ```
 confirm  regex can use `fail2ban-regex`
@@ -81,12 +81,24 @@ Options:
 fail2ban-regex [logFileAddress or string] [string for regx or filter file]
 
 ```
- fail2ban-regex /var/log/nginx/xxx-access.log "<HOST>.*login.*"
+ fail2ban-regex /var/log/nginx/xxx-access.log "<HOST>.*aaa.*"
 
 Running tests
 =============
 
-Use   failregex line : <HOST>.*login.*
+Use   failregex line : <HOST>.*aaa.*
+Use         log file : /var/log/nginx/xxx-access.log
+
+
+Results
+=======
+
+fail2ban-regex /var/log/nginx/xxx-access.log /etc/fail2ban/filter.d/xxx-POST-passwd-aaa.conf
+
+Running tests
+=============
+
+Use   failregex file : /etc/fail2ban/filter.d/xxx-POST-passwd-aaa.conf
 Use         log file : /var/log/nginx/xxx-access.log
 
 
@@ -95,34 +107,7 @@ Results
 
 Failregex: 297 total
 |-  #) [# of hits] regular expression
-|   1) [297] <HOST>.*login.*
-`-
-
-Ignoreregex: 0 total
-
-Date template hits:
-|- [# of hits] date format
-|  [5606] Day/MONTH/Year:Hour:Minute:Second
-`-
-
-Lines: 5606 lines, 0 ignored, 297 matched, 5309 missed
-
-
-fail2ban-regex /var/log/nginx/xxx-access.log /etc/fail2ban/filter.d/xxx-POST-passwd-limit.conf
-
-Running tests
-=============
-
-Use   failregex file : /etc/fail2ban/filter.d/xxx-POST-passwd-limit.conf
-Use         log file : /var/log/nginx/xxx-access.log
-
-
-Results
-=======
-
-Failregex: 297 total
-|-  #) [# of hits] regular expression
-|   1) [297] <HOST>.*login.*
+|   1) [297] <HOST>.*aaa.*
 `-
 
 Ignoreregex: 0 total
@@ -273,12 +258,12 @@ Command:
 ```
 Status
 |- Number of jail:      1
-`- Jail list:           login-limit
+`- Jail list:           aaa-limit
 show status of enable jail
 ```
-#### fail2ban-client status login-limit
+#### fail2ban-client status aaa-limit
 ```A
-Status for the jail: login-limit
+Status for the jail: aaa-limit
 |- filter
 |  |- File list:        /var/log/nginx/xx-access.log
 |  |- Currently failed: 0
