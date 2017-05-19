@@ -59,3 +59,37 @@ upstream serveName {
 } 
 ```
 # IP限制
+在http中添加
+`limit_req_zone $binary_remote_addr zone=ipLimit:10m rate=150r/s;`
+在 location中添加
+`limit_req zone=ipLimit burst=150 nodelay;`
+# 缓存
+## http 中添加
+```
+proxy_connect_timeout 5;  
+proxy_read_timeout 60;  
+proxy_send_timeout 5;  
+proxy_buffer_size 16k;  
+proxy_buffers 4 64k;  
+proxy_busy_buffers_size 128k;  
+proxy_temp_file_write_size 128k;  
+proxy_temp_path /home/xxx/temp;  
+proxy_cache_path /home/xxx/cache levels=1:2 keys_zone=cache_on:50m inactive=20m max_size=10g;  
+```
+## location中
+```
+proxy_cache cache_on;  
+proxy_cache_valid any 1h;  # any 可以缓存任意的 res
+
+proxy_cache_key $host$uri$is_args$args;  
+proxy_pass  http://xxx.xxx.com;
+proxy_ignore_headers "Cache-Control" "Expires" "Set-Cookie"; #忽略服务器中使用的 
+expires 30d;   
+proxy_set_header Host $host;  
+proxy_set_header X-Real-IP $remote_addr;  
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;  
+add_header X-Cache-Status $upstream_cache_status; #在response header中添加缓存命中状态
+```
+
+## Ref
+http://nginx.org/en/docs/http/ngx_http_proxy_module.html?&_ga=1.179671140.1192180146.1425500797#proxy_cache_valid
