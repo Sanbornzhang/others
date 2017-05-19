@@ -92,4 +92,4 @@ add_header X-Cache-Status $upstream_cache_status; #在response header中添加�
 ```
 
 ## Ref
-http://nginx.org/en/docs/http/ngx_http_proxy_module.html?&_ga=1.179671140.1192180146.1425500797#proxy_cache_valid
+http://nginx.org/en/docs/http/ngx_http_proxy_module.html
