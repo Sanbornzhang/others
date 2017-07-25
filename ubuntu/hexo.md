@@ -7,36 +7,21 @@
 2. cd init folder
 3. git clone
 4. change config file `_config.yml`
-# with pm2
-```
-index.js
-
-const { spawn } = require('child_process')
-let server = spawn('hexo',['server'])
-server.stdout.on('data', (data) => {
-    console.log(`stdout: ${data}`);
-  })
-server.stderr.on('data', (data) => {
-    console.log(`stderr: ${data}`);
-  })
-server.on('close', (code) => {
-    console.log(`子进程退出码：${code}`);
-  });
-
-```
-pm2 start index.js
 
 # with nginx
 ```
 server {
         listen 80;
-        server_name your_domain;
+        server_name yout_domain;
+        access_log  /var/log/nginx/Blog-access.log;
+        error_log  /var/log/nginx/Blog-error.log;
 
+        root /home/sanborn/blog/public;
         location / {
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_pass http://127.0.0.1:4000;
+            index  index.html index.htm;
         }
+
 }
+~
+
 ```
