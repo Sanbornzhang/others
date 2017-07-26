@@ -199,3 +199,14 @@ Options:
       --volumes-from list              Mount volumes from the specified container(s)
   -w, --workdir string                 Working directory inside the container
 ```
+Nodejs 默认的是
+```
+$ docker run \
+  -e "NODE_ENV=production" \
+  -u "node" \
+  -m "300M" --memory-swap "1G" \
+  -w "/home/node/app" \
+  --name "my-nodejs-app" \
+  node [script]
+```
+Ref: [Docker and Node.js Best Practices](https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md)
