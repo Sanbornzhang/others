@@ -1,7 +1,7 @@
 # Docker
 ## 创建docker文件
 ```
-DockerFIle
+DockerFile
 ```
 #### # 使用官方的nodejs 镜像 具体参考 [node version aliase](https://github.com/nodejs/LTS#lts-schedule1),[node docker](https://github.com/nodejs/docker-node#image-variants)
 ```
