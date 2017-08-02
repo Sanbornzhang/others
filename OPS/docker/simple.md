@@ -208,4 +208,7 @@ $ docker run \
   --name "my-nodejs-app" \
   node [script]
 ```
-Ref: [Docker and Node.js Best Practices](https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md)
+Ref: 
+1. [Docker and Node.js Best Practices](https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md)
+2. [dockerfile_best-practices](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
+
