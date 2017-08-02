@@ -89,6 +89,7 @@ Options:
 ## docker run
 ` docker run your-image-name ` 这样就能简单的跑起来了
 但是可以跟上一些参数
+
 -p 端口绑定
 ` docker run -p 80:3000 my-web-app`
 
