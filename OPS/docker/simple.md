@@ -16,8 +16,7 @@ COPY index.js .
 #### # 当然还有一种写法也是可以的
 
 ```
-# WORKDIR /app
-# ADD . /app
+# ADD . .
 ```
 #### # 运行
 ```
@@ -46,10 +45,10 @@ docker 执行默认是以超级管理员用户执行的 如果没有的话就会
 进入 dockerfile 的目录下 执行
 ```
 docker build -t you-want-name .
+# 加上 --no-cache 便于调试 docker 使用缓存的话相同的dockerfile build 出来的时候是没有 stdout的
 ```
 ```
-~ » docker build --help                                                                                                          piao@piao-All-Series
-
+~ » docker build --help                                                                                                          
 Usage:  docker build [OPTIONS] PATH | URL | -
 
 Build an image from a Dockerfile
