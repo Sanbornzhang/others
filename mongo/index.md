@@ -12,3 +12,8 @@
 ```
   db.collectionName.getIndexes()
 ```
+## log
+```
+db.setLogLevel() 
+# db.setLogLevel(3,'query')
+```
